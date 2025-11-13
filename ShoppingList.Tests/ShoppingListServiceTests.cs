@@ -331,5 +331,31 @@ public class ShoppingListServiceTests
         // assert
         Assert.Equal("Ground meat", service.GetAll()[0].Name);
     }
+
+
+    /// Search() tests:
+    /// - Search_WithEmptyQuery_ShouldReturnAllItems
+    /// - Search_WithNullQuery_ShouldReturnAllItems
+    /// - Search_MatchingName_ShouldReturnItem
+    /// - Search_MatchingNotes_ShouldReturnItem
+    /// - Search_ShouldBeCaseInsensitive
+    /// - Search_WithNoMatches_ShouldReturnEmpty
+    /// - Search_ShouldFindPartialMatches
+
+    [Fact]
+    public void Search_WithEmptyQuery_ShouldReturnAllItems()
+    {
+        //Arrange
+        var service = new ShoppingListService();
+        var items = service.GetAll();
+
+        //Act
+        var result = service.Search("");
+
+        //Assert
+        Assert.Equal(items.Count, result.Count);
+    }
+
+
 }
 

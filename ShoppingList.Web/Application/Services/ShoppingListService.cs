@@ -116,7 +116,15 @@ public class ShoppingListService : IShoppingListService
     {
         // TODO: Students - Implement this method
         // Return the filtered items
-        return [];
+        var shoppingItems = new List<ShoppingItem>();
+        for (int i = 0; i <= _nextIndex; i++)
+        {
+            if (_items[i] != null)
+            {
+                shoppingItems.Add(_items[i]);
+            }
+        }
+        return shoppingItems;
     }
 
     public int ClearPurchased()
