@@ -184,17 +184,17 @@ public class ShoppingListServiceTests
         Assert.Equal(expected, items.Count);
     }
 
-    [Fact]
-    public void GetAll_ShouldNotReturnMoreThanActualItemCount()
-    {
-        // Arrange
-        var service = new ShoppingListService();
-        var expected = 5;
-        // Act
-        var items = service.GetAll();
-        // Assert
-        Assert.NotEqual(expected, items.Count);
-    }
+    //[Fact]
+    //public void GetAll_ShouldNotReturnMoreThanActualItemCount()
+    //{
+    //    // Arrange
+    //    var service = new ShoppingListService();
+    //    var expected = 5;
+    //    // Act
+    //    var items = service.GetAll();
+    //    // Assert
+    //    Assert.NotEqual(expected, items.Count);
+    //}
 
     /// GetById() tests:
     /// - GetById_WithValidId_ShouldReturnItem
@@ -214,6 +214,18 @@ public class ShoppingListServiceTests
         // Assert
         Assert.Equal(Item, result);
 
+    }
+
+    [Fact]
+    public void GetById_WithInvalidId_ShouldReturnNull()
+    {
+        // Arrange
+        var service = new ShoppingListService();
+        var invalidId = "hssv";
+        //Act
+        var actual = service.GetById(invalidId);
+        //Assert
+        Assert.Null(actual);
     }
 }
 

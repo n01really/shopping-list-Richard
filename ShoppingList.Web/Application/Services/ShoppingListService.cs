@@ -38,7 +38,7 @@ public class ShoppingListService : IShoppingListService
         return null; // Not found
     }
 
-    public ShoppingItem? Add(string name, int quantity, string? notes)
+    public ShoppingItem? Add(string name, int quantity, string? notes) //needs to change
     {
         // Check if array is full and resize if needed
         if (_nextIndex >= _items.Length)
