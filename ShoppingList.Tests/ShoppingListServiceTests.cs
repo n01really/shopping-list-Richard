@@ -171,6 +171,19 @@ public class ShoppingListServiceTests
         Assert.Empty(items);
     }
 
+    [Fact]
+    public void GetAll_WithItems_ShouldReturnAllItems()
+    {
+        // Arrange
+        var service = new ShoppingListService();
+        var expected = 4;
+        // Act
+        var items = service.GetAll();
+
+        // Assert
+        Assert.Equal(expected, items.Count);
+    }
+
 
 }
 
