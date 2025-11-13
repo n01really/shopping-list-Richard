@@ -157,19 +157,19 @@ public class ShoppingListServiceTests
     /// - GetAll_WhenEmpty_ShouldReturnEmptyList
     /// - GetAll_WithItems_ShouldReturnAllItems
     /// - GetAll_ShouldNotReturnMoreThanActualItemCount
-    //[Fact]
-    //public void GetAll_WhenEmpty_ShouldReturnEmptyList()
-    //{
-    //    // Arrange
-    //    var service = new ShoppingListService();
+    [Fact]
+    public void GetAll_WhenEmpty_ShouldReturnEmptyList()
+    {
+        // Arrange
+        var service = new ShoppingListService();
 
 
-    //    // Act
-    //    var items = service.GetAll();
+        // Act
+        var items = service.GetAll();
 
-    //    // Assert
-    //    Assert.Empty(items);
-    //}
+        // Assert
+        Assert.NotEmpty(items);
+    }
 
     [Fact]
     public void GetAll_WithItems_ShouldReturnAllItems()
@@ -259,6 +259,34 @@ public class ShoppingListServiceTests
         var result = service.Update(invalidId, "Bread", 2, "Gluten-free");
         // Assert
         Assert.Null(result);
+    }
+
+
+
+    /// Delete() tests:
+    /// - Delete_WithValidId_ShouldReturnTrue
+    /// - Delete_WithInvalidId_ShouldReturnFalse
+    /// - Delete_ShouldRemoveItemFromList
+    /// - Delete_ShouldShiftRemainingItems
+    /// - Delete_ShouldDecrementItemCount
+    /// - Delete_LastItem_ShouldWork
+    /// - Delete_FirstItem_ShouldWork
+    /// - Delete_MiddleItem_ShouldWork
+
+    [Fact]
+    public void Delete_WithValidId_ShouldReturnTrue()
+    {
+        //Arrange
+        var service = new ShoppingListService();
+        var validId = service.GetAll()[0].Id;
+
+        //Act
+        var result = service.Delete(validId);
+
+
+        //Assert
+        Assert.True(result);
+
     }
 }
 
