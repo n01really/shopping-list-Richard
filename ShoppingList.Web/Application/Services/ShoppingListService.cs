@@ -65,8 +65,19 @@ public class ShoppingListService : IShoppingListService
     public ShoppingItem? Update(string id, string name, int quantity, string? notes)
     {
         // TODO: Students - Implement this method
+        var item = GetById(id);
+        if (item == null)
+        {
+            return null;
+        }
+
+        item.Name = name;
+        item.Quantity = quantity;
+        item.Notes = notes;
+
+
         // Return the updated item, or null if not found
-        return null;
+        return item;
     }
 
     public bool Delete(string id)

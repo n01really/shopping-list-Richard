@@ -215,5 +215,26 @@ public class ShoppingListServiceTests
         Assert.Equal(Item, result);
 
     }
+
+    /// Update() tests:
+    /// - Update_WithValidId_ShouldUpdateAndReturnItem
+    /// - Update_WithInvalidId_ShouldReturnNull
+    /// - Update_ShouldNotChangeId
+    /// - Update_ShouldNotChangeIsPurchased
+
+    [Fact]
+    public void Update_WithValidId_ShouldUpdateAndReturnItem()
+    {
+        // Arrange
+        var service = new ShoppingListService();
+        var item = service.Add("Bread", 1, "Whole grain");
+        var validId = item!.Id;
+        // Act
+        var updatedItem = service.Update(validId, "Bread", 2, "Gluten-free");
+        // Assert
+        Assert.Equal("Bread", updatedItem!.Name);
+        Assert.Equal(2, updatedItem.Quantity);
+        Assert.Equal("Gluten-free", updatedItem.Notes);
+    }
 }
 
