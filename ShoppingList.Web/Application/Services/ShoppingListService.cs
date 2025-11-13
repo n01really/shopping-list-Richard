@@ -27,19 +27,38 @@ public class ShoppingListService : IShoppingListService
 
     public ShoppingItem? GetById(string id)
     {
-        // TODO: Students - Find and return the item with the matching id
-   
-
-        return null;
+        // Search through items up to _nextIndex
+        for (int i = 0; i < _nextIndex; i++)
+        {
+            if (_items[i]?.Id == id)
+            {
+                return _items[i];
+            }
+        }
+        return null; // Not found
     }
 
     public ShoppingItem? Add(string name, int quantity, string? notes)
     {
-        var shoppingitem = new ShoppingItem();
+        // Check if array is full and resize if needed
+        if (_nextIndex >= _items.Length)
+        {
+            Array.Resize(ref _items, _items.Length * 2);
+        }
 
-        shoppingitem.Name = name;
-        shoppingitem.Quantity = quantity;
-        shoppingitem.Notes = notes;
+        var shoppingitem = new ShoppingItem
+        {
+            Id = Guid.NewGuid().ToString(),
+            Name = name,
+            Quantity = quantity,
+            Notes = notes,
+            IsPurchased = false
+        };
+        
+        // Store in array and increment index
+        _items[_nextIndex] = shoppingitem;
+        _nextIndex++;
+        
         return shoppingitem;
     }
 

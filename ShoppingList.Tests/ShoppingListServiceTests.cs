@@ -131,7 +131,7 @@ public class ShoppingListServiceTests
         // Assert
         Assert.NotNull(item1!.Id);
         Assert.NotNull(item2!.Id);
-        Assert.NotEqual(item1.Id, item2.Id);  
+        Assert.NotEqual(item1.Id, item2.Id);
     }
 
     //[Fact]
@@ -163,7 +163,7 @@ public class ShoppingListServiceTests
     //    // Arrange
     //    var service = new ShoppingListService();
 
-        
+
     //    // Act
     //    var items = service.GetAll();
 
@@ -196,5 +196,24 @@ public class ShoppingListServiceTests
         Assert.NotEqual(expected, items.Count);
     }
 
+    /// GetById() tests:
+    /// - GetById_WithValidId_ShouldReturnItem
+    /// - GetById_WithInvalidId_ShouldReturnNull
+    /// - GetById_WithNullId_ShouldReturnNull
+    /// - GetById_WithEmptyId_ShouldReturnNull
+
+    [Fact]
+    public void GetById_WithValidId_ShouldReturnItem()
+    {
+        // Arrange
+        var service = new ShoppingListService();
+        var Item = service.Add("ost", 1, "test notes");
+        var validId = Item!.Id;
+        // Act
+        var result = service.GetById(validId);
+        // Assert
+        Assert.Equal(Item, result);
+
+    }
 }
 
