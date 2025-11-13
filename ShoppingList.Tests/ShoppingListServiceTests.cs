@@ -367,5 +367,16 @@ public class ShoppingListServiceTests
         Assert.Equal(items.Count, result.Count);
     }
 
+    [Fact]
+    public void Search_MatchingName_ShouldReturnItem()
+    {
+        //Arrange
+        var service = new ShoppingListService();
+        //Act
+        var result = service.Search("Dishwasher");
+        //Assert
+        Assert.Contains("Dishwasher", result[0].Name);
+    }
+
 }
 

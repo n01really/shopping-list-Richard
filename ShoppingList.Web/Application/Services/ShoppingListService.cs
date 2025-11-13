@@ -116,15 +116,25 @@ public class ShoppingListService : IShoppingListService
     {
         // TODO: Students - Implement this method
         // Return the filtered items
-        var shoppingItems = new List<ShoppingItem>();
-        for (int i = 0; i <= _nextIndex; i++)
+        ShoppingItem[] results = new ShoppingItem[_nextIndex];
+        int resultIndex = 0;
+
+        if (string.IsNullOrWhiteSpace(query))
         {
-            if (_items[i] != null)
+            return GetAll();
+        }
+        for (int i = 0; i < _nextIndex; i++)
+        {
+            if (_items[i] != null &&
+                _items[i].Name.Contains(query, StringComparison.OrdinalIgnoreCase))
             {
-                shoppingItems.Add(_items[i]);
+                results[resultIndex] = _items[i];
+                resultIndex++;
             }
         }
-        return shoppingItems;
+
+        // Return only the filled part of the array
+        return results.Take(resultIndex).ToArray();
     }
 
     public int ClearPurchased()
