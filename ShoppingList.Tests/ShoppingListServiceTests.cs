@@ -40,13 +40,7 @@ namespace ShoppingList.Tests;
 /// - GetById_WithNullId_ShouldReturnNull
 /// - GetById_WithEmptyId_ShouldReturnNull
 ///
-/// Add() tests:
-/// - Add_WithValidInput_ShouldReturnItem
-/// - Add_ShouldGenerateUniqueId
-/// - Add_ShouldIncrementItemCount
-/// - Add_WhenArrayFull_ShouldExpandArray
-/// - Add_AfterArrayExpansion_ShouldContinueWorking
-/// - Add_ShouldSetIsPurchasedToFalse
+
 
 ///
 /// Update() tests:
@@ -94,12 +88,20 @@ namespace ShoppingList.Tests;
 /// - Reorder_ShouldChangeItemOrder
 /// - Reorder_WithEmptyList_ShouldReturnFalse
 /// </summary>
+
 public class ShoppingListServiceTests
 {
+    /// Add() tests:
+    /// - Add_WithValidInput_ShouldReturnItem
+    /// - Add_ShouldGenerateUniqueId
+    /// - Add_ShouldIncrementItemCount
+    /// - Add_WhenArrayFull_ShouldExpandArray
+    /// - Add_AfterArrayExpansion_ShouldContinueWorking
+    /// - Add_ShouldSetIsPurchasedToFalse
     //TODO: Write your tests here following the TDD workflow
 
     // Example test structure:
-     [Fact]
+    [Fact]
     public void Add_WithValidInput_ShouldReturnItem()
     {
         // Arrange
@@ -113,5 +115,24 @@ public class ShoppingListServiceTests
         Assert.Equal("Milk", item!.Name);
         Assert.Equal(2, item.Quantity);
     }
+
+    [Fact]
+    public void Add_ShouldGenerateUniqueId()
+    {
+        // Arrange
+        var service = new ShoppingListService();
+
+        // Act
+        var item1 = service.Add("Milk", 2, "Lactose-free");
+        var item2 = service.Add("Bread", 1, "Whole grain");
+
+        // Assert
+        Assert.NotNull(item1!.Id);
+        Assert.NotNull(item2!.Id);
+        Assert.NotEqual(item1.Id, item2.Id);  
+    }
+
+
+
 }
 
