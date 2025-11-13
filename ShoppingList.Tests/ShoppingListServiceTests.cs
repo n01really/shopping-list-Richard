@@ -300,5 +300,22 @@ public class ShoppingListServiceTests
         //assert
         Assert.False(result);
     }
+
+    [Fact]
+    public void Delete_ShouldShiftRemainingItems()
+    {
+        //arrange
+        var service = new ShoppingListService();
+        var addedItem1 = service.Add("Eggs", 12, "Free-range");
+        var addedItem2 = service.Add("Butter", 1, "Salted");
+        var item1Id = addedItem1!.Id;
+        var Expected = addedItem2.Id[0];
+
+        //act
+        var actual = service.Delete(item1Id);
+
+        //assert
+        Assert.Equal(Expected, addedItem2.Id[0]);
+    }
 }
 
