@@ -126,7 +126,8 @@ public class ShoppingListService : IShoppingListService
         for (int i = 0; i < _nextIndex; i++)
         {
             if (_items[i] != null &&
-                _items[i].Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+                _items[i].Name.Contains(query, StringComparison.OrdinalIgnoreCase) 
+                || _items[i].Notes.Contains(query, StringComparison.OrdinalIgnoreCase))
             {
                 results[resultIndex] = _items[i];
                 resultIndex++;

@@ -378,5 +378,15 @@ public class ShoppingListServiceTests
         Assert.Contains("Dishwasher", result[0].Name);
     }
 
+    [Fact]
+    public void Search_MatchingNote_ShouldReturnItem()
+    {
+        //Arrange
+        var service = new ShoppingListService();
+        //Act
+        var result = service.Search("80st/pack - Rea");
+        //Assert
+        Assert.Contains("80st/pack - Rea", result[0].Notes);
+    }
 }
 
