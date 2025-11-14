@@ -28,9 +28,9 @@ jobs:
         - name: build
           run: dotnet build
 
-        - name: test(only when build succeeded)
-          if: succsess()
-          run: dotnet test
+        - name: test (only when build succeeded)
+          if: success()
+          run: dotnet test --no-build --verbosity normal
 
         - name: context manual
           if: github.event.name 'workflow_dispatch'
