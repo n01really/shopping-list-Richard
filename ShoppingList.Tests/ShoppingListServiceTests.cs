@@ -365,7 +365,7 @@ public class ShoppingListServiceTests
         //Act
         var result = service.Search(null!);
         //Assert
-        Assert.Equal(items.Count, result.Count);
+        Assert.Equal(items.Count, result.Count);//test
     }
 
     //[Fact]
