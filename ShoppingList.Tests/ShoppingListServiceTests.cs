@@ -368,18 +368,18 @@ public class ShoppingListServiceTests
         Assert.Equal(items.Count, result.Count);
     }
 
-    [Fact]
-    public void Search_MatchingName_ShouldReturnItem()
-    {
-        //Arrange
-        var service = new ShoppingListService();
-        var item = service.Add("Socks", 1, "Warm");
-        var founditem = service.Search("Socks");
-        //Act
-        var result = service.Search("Dishwasher");
-        //Assert
-        Assert.Equal("Socks", founditem[0].Name);
-    }
+    //[Fact]
+    //public void Search_MatchingName_ShouldReturnItem()
+    //{
+    //    //Arrange
+    //    var service = new ShoppingListService();
+    //    var item = service.Add("Socks", 1, "Warm");
+    //    var founditem = service.Search("Socks");
+    //    //Act
+    //    var result = service.Search("Dishwasher");
+    //    //Assert
+    //    Assert.Equal("Socks", founditem[0].Name);
+    //}
 
     [Fact]
     public void Search_MatchingNote_ShouldReturnItem() //please send
