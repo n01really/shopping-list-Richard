@@ -33,12 +33,12 @@ jobs:
           run: dotnet test --no-build --verbosity normal
 
         - name: context manual
-          if: github.event.name == "workflow_dispatch"
+          if: github.event.name == 'workflow_dispatch'
           run: |
             echo "Started by: ${{ github.actor }}"
             echo "Input note: ${{ github.event.inputs.note }}"
         - name: context push
-          if: github.event.name == "push"
+          if: github.event.name == 'push'
           run: |
             echo "Commit Message: ${{ github.event.head_commit.message }}"
             echo "Author: ${{ github.event.head_commit.author.name }}"
@@ -46,7 +46,7 @@ jobs:
             git diff-tree --no-commit-id --name-status -r HEAD
                 
         - name: context pull_request
-          if: github.event.name == "pull_request"
+          if: github.event.name == 'pull_reques'
           run: |
               echo "PR Number: ${{ github.event.pull_request.number }}"
               echo "Author: ${{ github.event.pull_request.user.login }}"
